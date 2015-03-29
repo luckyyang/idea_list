@@ -9,7 +9,7 @@ if (Meteor.isClient) {
       return Session.get('counter');
     },
     all_ideas: function () {
-      return Ideas.find();
+      return Ideas.find({}, {sort: {score: -1}});
     }
   });
 
@@ -23,7 +23,7 @@ if (Meteor.isClient) {
       });
     },
     'click li': function () {
-      Ideas.update(this._id, {$inc: {score: 5}}); //primary id, $inc:increase
+      Ideas.update(this._id, {$inc: {score: 1}}); //primary id, $inc:increase
     }
   });
 }
