@@ -21,6 +21,9 @@ if (Meteor.isClient) {
       Ideas.insert({
         score: Session.get('counter')
       });
+    },
+    'click li': function () {
+      Ideas.update(this._id, {$inc: {score: 5}}); //primary id, $inc:increase
     }
   });
 }
