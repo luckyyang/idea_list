@@ -30,20 +30,22 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    Ideas.remove({});
+    // Ideas.remove({});
     // code to run on server at startup
-    var names = [
-    "8小时做一个 facebook",
-    "8小时做一个 twitter",
-    "8小时做一个 知乎"
-    ];
-    _.each(names,function(name) { //underscorejs.org, javascipt
+    if(Ideas.find().count() == 0) {
+      var names = [
+      "8小时做一个 facebook",
+      "8小时做一个 twitter",
+      "8小时做一个 知乎"
+      ];
+      _.each(names,function(name) { //underscorejs.org, javascipt
 
-      Ideas.insert({
-        name: name,
-        score: 0
+        Ideas.insert({
+          name: name,
+          score: 0
+        })
       })
-    })
+    }
   });
 }
 
