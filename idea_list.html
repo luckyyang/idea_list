@@ -10,6 +10,13 @@
 
 <template name="hello">
   <button>Click Me</button>
-  <p>You've pressed the button {{abc}} times.</p>
+  <p>You've pressed the button {{all_ideas}} times.</p>
+  <ol><!--  order list -->
+  {{#each all_ideas}}
+    <li>
+      {{name}}: {{score}}
+    </li>
+  {{/each}}
+  </ol>
 </template>
 <!-- helper, varible -->

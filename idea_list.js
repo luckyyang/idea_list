@@ -1,4 +1,5 @@
 Ideas = new Mongo.Collection("ideas");
+// all_ideas = Ideas.find();
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
@@ -7,9 +8,8 @@ if (Meteor.isClient) {
     counter: function () {
       return Session.get('counter');
     },
-    abc: function () {
-      Ideas.findOne().score;
-      return Session.get('counter');
+    all_ideas: function () {
+      return Ideas.find();
     }
   });
 
@@ -27,6 +27,7 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    Ideas.remove({});
     // code to run on server at startup
     var names = [
     "8小时做一个 facebook",
@@ -34,6 +35,7 @@ if (Meteor.isServer) {
     "8小时做一个 知乎"
     ];
     _.each(names,function(name) { //underscorejs.org, javascipt
+
       Ideas.insert({
         name: name,
         score: 0
