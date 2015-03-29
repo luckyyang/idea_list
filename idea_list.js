@@ -30,6 +30,16 @@ if (Meteor.isClient) {
       }
     }
   });
+  Template.form.events({
+    'click button': function(event) {
+      event.preventDefault();
+      var idea_name = $("input[type=text]").val();
+      Ideas.insert({
+        name: idea_name,
+        score: 0
+      });
+    }
+  })
 }
 
 if (Meteor.isServer) {
