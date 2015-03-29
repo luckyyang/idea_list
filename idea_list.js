@@ -3,6 +3,7 @@ Ideas = new Mongo.Collection("ideas");
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
+  Session.setDefault("up_counter", 2);
 
   Template.hello.helpers({
     counter: function () {
@@ -23,7 +24,10 @@ if (Meteor.isClient) {
       });
     },
     'click li': function () {
-      Ideas.update(this._id, {$inc: {score: 1}}); //primary id, $inc:increase
+      Session.set('up_counter', Session.get('up_counter') - 1);
+      if(Session.get('up_counter') >= 0){
+        Ideas.update(this._id, {$inc: {score: 1}}); //primary id, $inc:increase
+      }
     }
   });
 }
